@@ -1,6 +1,7 @@
 /.next
 /.swc
 /node_modules
+/prisma/migrations_old
 
 .env
 .DS_Store
