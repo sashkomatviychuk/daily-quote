@@ -6,6 +6,7 @@ const font = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
   weight: '300',
   style: 'italic',
+  subsets: ['latin'],
 });
 
 interface LeadingQuoteProps {
