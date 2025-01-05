@@ -5,14 +5,13 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
+import { auth } from '@/auth';
 import { createQuote as createQuoteDb } from '@/db/queries/quotes';
 
 const createQuoteSchema = z.object({
   category: z.enum(['people', 'places', 'life', 'wisdom'], { message: 'Please select quote category' }),
   content: z.string().min(20, 'Looks like quote text should not be short'),
 });
-
-const DEFAULT_AUTHOR_ID = 1;
 
 interface CreateQuoteFormState {
   errors: {
@@ -28,6 +27,14 @@ export async function createQuote(formState: CreateQuoteFormState, formData: For
     content: formData.get('content'),
   });
 
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    return {
+      errors: { _form: ['Can not create a new quote'] },
+    };
+  }
+
   if (!result.success) {
     return {
       errors: result.error.flatten().fieldErrors,
@@ -39,7 +46,7 @@ export async function createQuote(formState: CreateQuoteFormState, formData: For
   try {
     quote = await createQuoteDb({
       ...result.data,
-      authorId: DEFAULT_AUTHOR_ID,
+      authorId: session.user.id,
     });
   } catch (err: unknown) {
     if (err instanceof Error) {

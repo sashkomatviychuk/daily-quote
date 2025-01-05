@@ -48,7 +48,7 @@ export default function CreateQuoteModal() {
               id="category"
               name="category"
               className={clx(
-                'h-10 rounded outline-blue-600 w-full px-2 text-slate-700 dark:text-white bg-gray-100 dark:bg-gray-900',
+                'appearance-none h-10 rounded outline-blue-600 w-full px-2 text-slate-700 dark:text-white bg-gray-100 dark:bg-gray-900',
                 {
                   'border border-rose-600': categoryError,
                 }

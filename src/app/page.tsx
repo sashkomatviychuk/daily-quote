@@ -10,6 +10,7 @@ import Header from '@/components/ui/Header';
 import Logo from '@/components/ui/Logo';
 import Navigation from '@/components/ui/Navigation';
 import ThemeToggler from '@/components/ui/ThemeToggler';
+import SignInIndicator from '@/components/user/SignInIndicator';
 
 interface HomePageProps {
   searchParams: Promise<{ category?: string }>;
@@ -22,7 +23,10 @@ export default async function Home({ searchParams }: HomePageProps) {
     <>
       <Header>
         <Logo />
-        <ThemeToggler />
+        <div className="flex gap-4">
+          <SignInIndicator />
+          <ThemeToggler />
+        </div>
       </Header>
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-4 flex-1 overflow-y-auto">
         <section className="basis-1/3 lg:sticky top-0">

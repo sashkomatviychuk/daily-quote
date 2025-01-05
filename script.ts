@@ -1,10 +1,8 @@
-import { type User } from '@prisma/client';
+// import { type User } from '@prisma/client';
+
 import db from '@/db/client';
 
 async function main() {
-  const users = await db.quote.findMany();
-  console.log(users);
-
   // await db.user.create({
   //   data: {
   //     email: 'user@email.com',
@@ -13,6 +11,9 @@ async function main() {
   //     name: 'John A. Doe',
   //   },
   // });
+
+  const users = await db.user.findMany();
+  console.log(users);
 
   // await db.quote.create({
   //   data: {
