@@ -1,11 +1,20 @@
-'use client';
+import Link from 'next/link';
 
-import { useRouter } from 'next/navigation';
+import { auth } from '@/auth';
 
-import Button from '../form/Button';
+export default async function CreateQuoteButton() {
+  const session = await auth();
 
-export default function CreateQuoteButton() {
-  const router = useRouter();
+  if (!session?.user) {
+    return null;
+  }
 
-  return <Button onClick={() => router.push('/create-quote')}>Create a quote</Button>;
+  return (
+    <Link
+      className="mb-6 inline-block py-2 px-4 text-sm bg-green-600 text-white rounded-md hover:bg-green-800 transition duration-300 tracking-wide"
+      href={'/create-quote'}
+    >
+      Create a quote
+    </Link>
+  );
 }

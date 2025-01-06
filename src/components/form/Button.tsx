@@ -1,16 +1,16 @@
 import clx from 'classnames';
 import { Roboto } from 'next/font/google';
+import { PropsWithChildren } from 'react';
 
 const roboto = Roboto({
   weight: ['400'],
   subsets: ['latin'],
 });
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-}
-
-export default function Button({ children, ...rest }: ButtonProps) {
+export default function Button({
+  children,
+  ...rest
+}: PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   return (
     <button
       {...rest}

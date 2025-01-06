@@ -1,13 +1,12 @@
 'use client';
 
 import { User } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 import { signOutAction } from '@/actions/sign-out';
 
 const UserPopover: React.FC = () => {
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = () => setIsOpen(false);
@@ -24,15 +23,19 @@ const UserPopover: React.FC = () => {
 
       {isOpen && (
         <div
-          className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-lg z-10"
+          className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded dark:bg-slate-950 dark:border-gray-700 shadow-lg z-10"
           onClick={handleClose}
         >
-          <ul className="py-2 text-sm text-gray-700">
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => router.push('/profile')}>
-              Profile
+          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+            <li className="hover:bg-gray-100 dark:hover:bg-slate-800 cursor-pointer">
+              <Link className="px-4 py-2 inline-block w-full" href={'/profile'}>
+                Profile
+              </Link>
             </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={signOutAction}>
-              Logout
+            <li className="hover:bg-gray-100 dark:hover:bg-slate-800 cursor-pointer">
+              <button className="px-4 py-2 text-left w-full" onClick={signOutAction}>
+                Logout
+              </button>
             </li>
           </ul>
         </div>

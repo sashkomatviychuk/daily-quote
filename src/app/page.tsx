@@ -33,9 +33,9 @@ export default async function Home({ searchParams }: HomePageProps) {
           <LeadingQuote className="text-xl leading-8 pt-6">
             Discover, Share and Amplify the power of quotes to inspire and uplift others on the journey of life.
           </LeadingQuote>
-          <div className="flex mb-6 justify-center lg:justify-start">
-            <CreateQuoteButton />
-          </div>
+          {/* <div className="flex mb-6 justify-center lg:justify-start"> */}
+          <CreateQuoteButton />
+          {/* </div> */}
           <QuoteSectionLeft />
           <Footer />
         </section>
