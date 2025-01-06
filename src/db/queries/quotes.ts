@@ -50,7 +50,7 @@ export const createQuote = async (payload: CreateQuotePayload): Promise<Quote> =
   });
 };
 
-export const getUser = async (id: number): Promise<User | null> => {
+export const getUser = async (id: string): Promise<User | null> => {
   return db.user.findUnique({
     where: {
       id,

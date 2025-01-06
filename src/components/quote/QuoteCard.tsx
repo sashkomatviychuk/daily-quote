@@ -7,7 +7,7 @@ interface QuoteCardProps {
   id: string;
   text: string;
   category: string;
-  author?: string;
+  author?: string | null;
   likes?: number;
   liked?: boolean;
   className?: string;
