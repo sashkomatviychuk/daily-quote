@@ -21,7 +21,7 @@ export default function LikeButton({ likes = 0, liked, quoteId }: LikeButtonProp
     startTransition(async () => {
       const { liked, likes } = await toggleLike({
         currentLikes: likesCount,
-        quoteId: +quoteId,
+        quoteId: Number(quoteId),
       });
 
       setIsLiked(liked);

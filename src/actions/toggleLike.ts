@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
 import { updateLikesCount } from '@/db/queries/quotes';
@@ -27,12 +28,10 @@ export default async function toggleLike({
 
   const { likes } = await updateLikesCount(quoteId, hasLike ? currentLikes - 1 : currentLikes + 1);
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        liked: !hasLike,
-        likes,
-      });
-    }, 300);
-  });
+  revalidatePath('/');
+
+  return {
+    liked: !hasLike,
+    likes,
+  };
 }
